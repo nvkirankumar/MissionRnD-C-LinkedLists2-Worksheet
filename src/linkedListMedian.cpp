@@ -19,6 +19,33 @@ struct node {
 	struct node *next;
 };
 
+typedef struct node *lptr;
+
 int linkedListMedian(struct node *head) {
+
+	if (head==NULL)
 	return -1;
+
+	lptr t;
+	t = head;
+	int i = 0,j=0;
+	while (t->next != NULL)
+	{
+		i++;
+		t = t->next;
+	}
+	i++;
+	if (i == 1)
+		return head->num;
+	t = head;
+
+	while (j != i / 2 - 1)
+	{
+		t = t->next;
+		j++;
+	}
+	if (i % 2 == 1)
+		return (t->next)->num;
+	else
+		return ((t->num) + (t->next)->num) / 2;
 }
